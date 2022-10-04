@@ -34,6 +34,14 @@ app.get('/dev/:id', (req, res) => {
 
 })
 
+app.post('/dev', (req, res) => {
+    const id = getUniqueId(developpeurs)
+    const createDeveloppeur = {...req.body, ...{id: id, created: new Date()}}
+    developpeurs.push(createDeveloppeur)
+    const message = "Developpeur ajouté"
+    res.json(success(message, createDeveloppeur))
+})
+
 
 
 app.listen(port, ()=>{
