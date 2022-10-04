@@ -52,6 +52,13 @@ app.put('/dev/:id', (req, res) => {
     res.json(success(message, upadateDeveloppeur))
 })
 
+app.delete('/dev/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const deletedDeveloppeur = developpeurs.find(developpeur => developpeur.id === id)
+    developpeurs = developpeurs.filter(developpeur => developpeur.id !== id)
+    const message = "Information est supprimée avec succes"
+    res.json(success(message, deletedDeveloppeur))
+})
 
 app.listen(port, ()=>{
     console.log('Le serveur est demarré avec succes')
