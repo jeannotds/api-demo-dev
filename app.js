@@ -42,6 +42,15 @@ app.post('/dev', (req, res) => {
     res.json(success(message, createDeveloppeur))
 })
 
+app.put('/dev/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const upadateDeveloppeur = {...req.body, ...{id: id}}
+    developpeurs = developpeurs.map(developpeur => {
+        return developpeur.id === id ? upadateDeveloppeur: developpeur
+    })
+    const message = "Information modifier avec succes"
+    res.json(success(message, upadateDeveloppeur))
+})
 
 
 app.listen(port, ()=>{
